@@ -16,8 +16,26 @@ public:
         for(int i=0;i<n;i++){
             sum+=nums[i];
         }
-        dp.resize(n,vector<int>((sum/2)+1,-1));
-        if(sum%2==0)return solve(nums,n,0,sum/2);
-        else return false;
+        dp.resize(n,vector<int>((sum/2)+1,0));
+        // if(sum%2==0)return solve(nums,n,0,sum/2);
+        // else return false;
+        if(sum&1)return false;
+        sum=sum/2;
+        for(int i=0;i<n;i++){
+            dp[i][0]=1;
+        }
+        if(nums[0]<=sum)dp[0][nums[0]]=1;
+        else return 0;
+        for(int i=1;i<n;i++){
+            for(int j=1;j<=sum;j++){
+                if(nums[i]>j){
+                    dp[i][j]=dp[i-1][j];
+                }
+                else{
+                    dp[i][j]= dp[i-1][j-nums[i]] || dp[i-1][j];
+                }
+            }
+        }
+        return dp[n-1][sum];
     }
 };
