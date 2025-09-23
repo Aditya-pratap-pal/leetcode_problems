@@ -21,7 +21,6 @@ public:
             for(int i=0;i<sz;i++){
                 TreeNode* temp=q.front();
                 q.pop();
-
                 v.push_back(temp->val);
                 if(temp->left!=nullptr) q.push(temp->left);
                 if(temp->right!=nullptr) q.push(temp->right);
