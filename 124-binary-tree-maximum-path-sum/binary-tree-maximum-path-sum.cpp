@@ -11,17 +11,22 @@
  */
 class Solution {
 public:
-int maxSum=INT_MIN;
-    int func(TreeNode* root){
+    int func(TreeNode *root,int &maxi){
         if(root==nullptr)return 0;
-        int l=max(0,func(root->left));
-        int r=max(0,func(root->right));
-        maxSum=max(maxSum,root->val+l+r);
-        
-        return max(l,r)+root->val;
+
+        int l = func(root->left,maxi);
+        int r = func(root->right,maxi);
+        if(l<0)l=0;
+        if(r<0)r=0;
+        maxi = max(maxi,l+r+root->val);
+        return max(l+root->val,r+root->val);
+
     }
     int maxPathSum(TreeNode* root) {
-        int call = func(root);
-        return max(root->val,maxSum);
+        // if(root==nullptr)return 0;
+        int temp = INT_MIN;
+        int ans = func(root,temp);
+        return temp;
+        
     }
 };
