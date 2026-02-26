@@ -20,7 +20,7 @@ public:
     }
     bool isUnivalTree(TreeNode* root) {
 
-        if(root == nullptr) return true;
+        // if(root == nullptr) return true;
         return func(root,root->val);
     }
 };
