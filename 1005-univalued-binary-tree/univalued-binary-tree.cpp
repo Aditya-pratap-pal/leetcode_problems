@@ -1,0 +1,26 @@
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
+class Solution {
+public:
+    bool func(TreeNode* root,int data){
+        if(root==nullptr)return 1;
+        if(root->val!=data)return 0;
+        bool leftGo = func(root->left,data);
+        bool rightGo = func(root->right,data);
+        return (leftGo && rightGo);
+    }
+    bool isUnivalTree(TreeNode* root) {
+
+        if(root == nullptr) return true;
+        return func(root,root->val);
+    }
+};
