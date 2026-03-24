@@ -11,15 +11,14 @@
  */
 class Solution {
 public:
-void func(TreeNode* root,vector<int> &v){
-        if(root==nullptr)return ;
-        func(root->left,v);
-        v.push_back(root->val);
-        func(root->right,v);
-    }
+vector<int> ans;
     vector<int> inorderTraversal(TreeNode* root) {
-        vector<int> v;
-        func(root,v);
-        return v;
+        if(root==nullptr)return {};
+        // vector<int> ans;
+        inorderTraversal(root->left);
+        ans.push_back(root->val);
+        inorderTraversal(root->right);
+        // ans.push_back(root->data);
+        return ans;
     }
 };
